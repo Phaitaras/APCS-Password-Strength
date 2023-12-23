@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+/home/runner/APCS-Project-Password-strength/.cache/jdt-language-server/data/home/runner/APCS-Project-Password-strength/.metadata/.plugins/org.eclipse.jdt.core
+3842426239.index
