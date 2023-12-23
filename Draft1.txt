@@ -1,0 +1,91 @@
+import java.util.*;
+import java.io.*;
+
+//useful website https://www.javacodeexamples.com/check-password-strength-in-java-example/668
+
+class Main {
+  public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+
+    int point = 0;
+    int length = 0;
+    int countNum = 0;
+    int countUpper = 0;
+    int countLower = 0;
+    int countSpecial = 0;
+
+    System.out.print("Enter your password: ");
+    String password = scan.nextLine();
+
+    length = password.length();
+    //System.out.println(length);
+
+    for (char letter : password.toCharArray()) {
+
+      //check for lowercase, uppercase, numbers, special characters
+        
+      if (letter <= 57 && letter >= 48) {
+        point += 10; // number 0-9 is from 48 to 57
+        countNum ++;
+      } else if (letter <= 90 && letter >= 41) {
+        point += 5; // uppercase A-Z from 41-90
+        countUpper ++;
+      } else if (letter <= 122 && letter >= 97) {
+        point++; // lowercase a-z from 97-122
+        countLower ++;
+      } else {
+        point += 15; // special characters
+        countSpecial ++;
+      }      
+    }
+
+    point = point + (3 * length);
+
+    //print results
+    if (countNum >= 3){
+      System.out.println("You have at least 3 numbers");
+    }else{
+      System.out.println("You have less than 3 numbers");
+    }
+    if (countUpper >= 1){
+      System.out.println("You have at least 1 Uppercase");
+    }else{
+      System.out.println("Please put at least one Uppercase");
+    }
+    if (countLower >= 5){
+      System.out.println("You have at least 5 Lowercase");
+    }else{
+      System.out.println("Bruh!");
+    }
+    if (countSpecial >= 1){
+      System.out.println("You have at least 1 special character");
+    }else{
+      System.out.println("Recommed that you use at least one special charcater");
+    }
+
+    if(password.matches(".*qwerty.*")){
+        System.out.println("This is keyboard sequence");
+        point -= 20;
+    }
+
+    String strength = "";
+    if(point < 50){
+      strength = "TOO SIMPLE";
+    }else if (point < 70){
+      strength = "weak";
+    }else if (point < 90){
+      strength = "Fair";
+    }else if (point < 120){
+      strength = "Strong";
+    }else{
+      strength = "Incredible";
+    }
+
+    System.out.format("Your total strength score is %d\nLevel: %s", point, strength);
+
+    scan.close();
+    
+  }
+}
+
